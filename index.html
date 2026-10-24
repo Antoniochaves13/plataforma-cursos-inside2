@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-ao">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plataforma Cursos - Inside Systems</title>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui;max-width:900px;margin:auto;padding:15px;background:#f5f7fb}
+header{background:#0b2a5c;color:white;padding:20px;border-radius:12px;text-align:center}
+input{width:100%;padding:14px;border-radius:10px;border:1px solid #ccc;margin:15px 0;font-size:16px}
+.card{background:white;padding:16px;border-radius:12px;margin:10px 0;border:1px solid #e6e8f0;display:flex;justify-content:space-between}
+.badge{background:#eef2ff;color:#0b2a5c;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
+</style>
+</head>
+<body>
+<header><h2>Plataforma de Gestão de Cursos - Inside Systems</h2><p>React + Vite + API REST + Estruturas de Dados</p></header>
+<input id="busca" placeholder="Pesquisar: React, Node, SQL..." onkeyup="filtrar()">
+<div id="contador"></div>
+<div id="lista"></div>
+<script>
+const cursos=[
+{id:1,nome:"React Avançado com Vite",cat:"Frontend",nivel:"Júnior"},
+{id:2,nome:"Node.js + Express API REST",cat:"Backend",nivel:"Júnior"},
+{id:3,nome:"MongoDB NoSQL e Mongoose",cat:"BD",nivel:"Júnior"},
+{id:4,nome:"SQL com GROUP BY e JOIN",cat:"BD",nivel:"Júnior"},
+{id:5,nome:"Lógica e Estruturas de Dados",cat:"Fundamentos",nivel:"Júnior"},
+{id:6,nome:"Git e GitHub Pages",cat:"Ferramentas",nivel:"Júnior"}
+];
+function mostrar(lista){
+document.getElementById('contador').innerHTML=`<p><b>${lista.length} cursos encontrados</b></p>`;
+document.getElementById('lista').innerHTML=lista.map(c=>`<div class=card><div><b>${c.nome}</b><br><small>${c.cat} - ${c.nivel}</small></div><span class=badge>${c.cat}</span></div>`).join('');
+}
+function filtrar(){
+let t=document.getElementById('busca').value.toLowerCase();
+mostrar(cursos.filter(c=>c.nome.toLowerCase().includes(t) || c.cat.toLowerCase().includes(t)));
+}
+mostrar(cursos);
+</script>
+</body>
+</html>
